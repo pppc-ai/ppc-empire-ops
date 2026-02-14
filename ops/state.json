@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-02-14T08:21:30Z",
+  "updated_at": "2026-02-14T08:26:30Z",
   "budget": {
     "daily_cap_usd": 5,
     "spent_today_usd": 0,
@@ -13,17 +13,30 @@
   "initiatives": [
     {
       "name": "Observability Stack",
-      "description": "Build GitHub-based dashboard + ledger",
+      "description": "Dashboard live; add telemetry + automation",
       "eta": "2026-02-14",
       "status": "in-progress"
     },
     {
       "name": "Experiment 001",
-      "description": "Define first revenue play leveraging GPT APIs",
+      "description": "Prep prompts, sample brief, outreach copy",
       "eta": "2026-02-14",
-      "status": "queued"
+      "status": "in-progress"
+    },
+    {
+      "name": "Automation Helper",
+      "description": "Script agent to sync ledger + state",
+      "eta": "2026-02-14",
+      "status": "in-progress"
     }
   ],
   "blockers": [],
-  "experiments": []
+  "experiments": [
+    {
+      "name": "Experiment 001 – Revenue Briefs",
+      "status": "design",
+      "eta": "2026-02-14",
+      "notes": "Prompt kit + sample brief in development"
+    }
+  ]
 }
