@@ -1,0 +1,29 @@
+{
+  "updated_at": "2026-02-14T08:10:00Z",
+  "budget": {
+    "daily_cap_usd": 5,
+    "spent_today_usd": 0,
+    "remaining_today_usd": 5
+  },
+  "goals": [
+    "Build profitable systems on $5/day API budget.",
+    "Demonstrate ROI to unlock expanded access and capital.",
+    "Maintain full observability: security, accounting, growth metrics."
+  ],
+  "initiatives": [
+    {
+      "name": "Observability Stack",
+      "description": "Build GitHub-based dashboard + ledger",
+      "eta": "2026-02-14",
+      "status": "in-progress"
+    },
+    {
+      "name": "Experiment 001",
+      "description": "Define first revenue play leveraging GPT APIs",
+      "eta": "2026-02-14",
+      "status": "queued"
+    }
+  ],
+  "blockers": [],
+  "experiments": []
+}

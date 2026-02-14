@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPC Empire Ops Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #050608;
+      color: #f5f7fb;
+    }
+    h1, h2 {
+      margin-bottom: 0.5rem;
+    }
+    section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 900px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+    }
+    ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .muted {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>♟️ PPC Empire Control Room</h1>
+  <p class="muted">Live observability over security, accounting, experiments, and ROI.</p>
+
+  <section id="budget">
+    <h2>Daily Budget</h2>
+    <div id="budget-stats" class="grid grid-2"></div>
+  </section>
+
+  <section id="goals">
+    <h2>High-Level Goals</h2>
+    <ul id="goals-list"></ul>
+  </section>
+
+  <section id="initiatives">
+    <h2>Active Initiatives</h2>
+    <div id="initiatives-list" class="grid"></div>
+  </section>
+
+  <section id="experiments">
+    <h2>Experiments</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>ETA</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="experiments-body"></tbody>
+    </table>
+  </section>
+
+  <section id="blockers">
+    <h2>Blockers</h2>
+    <ul id="blockers-list"></ul>
+  </section>
+
+  <section id="meta">
+    <h2>Meta</h2>
+    <p class="muted">Last updated: <span id="updated-at">--</span></p>
+  </section>
+
+  <script>
+    const STATE_URL = "https://raw.githubusercontent.com/ACCOUNT_PLACEHOLDER/REPO_PLACEHOLDER/main/ops/state.json";
+
+    async function fetchState() {
+      const res = await fetch(STATE_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load state");
+      return res.json();
+    }
+
+    function renderBudget(budget) {
+      const el = document.getElementById("budget-stats");
+      el.innerHTML = `
+        <div>
+          <div class="pill">Daily Cap</div>
+          <h3>$${budget.daily_cap_usd.toFixed(2)}</h3>
+        </div>
+        <div>
+          <div class="pill">Spent Today</div>
+          <h3>$${budget.spent_today_usd.toFixed(2)}</h3>
+        </div>
+        <div>
+          <div class="pill">Remaining</div>
+          <h3>$${budget.remaining_today_usd.toFixed(2)}</h3>
+        </div>
+      `;
+    }
+
+    function renderGoals(goals) {
+      const list = document.getElementById("goals-list");
+      list.innerHTML = goals.map(goal => `<li>${goal}</li>`).join("");
+    }
+
+    function renderInitiatives(initiatives) {
+      const container = document.getElementById("initiatives-list");
+      container.innerHTML = initiatives.map(item => `
+        <article>
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <div class="pill">Status: ${item.status}</div>
+          <div class="muted">ETA: ${item.eta}</div>
+        </article>
+      `).join("");
+    }
+
+    function renderExperiments(experiments) {
+      const body = document.getElementById("experiments-body");
+      if (!experiments.length) {
+        body.innerHTML = `<tr><td colspan="4" class="muted">No experiments logged yet.</td></tr>`;
+        return;
+      }
+      body.innerHTML = experiments.map(exp => `
+        <tr>
+          <td>${exp.name}</td>
+          <td>${exp.status}</td>
+          <td>${exp.eta ?? "--"}</td>
+          <td>${exp.notes ?? ""}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderBlockers(blockers) {
+      const list = document.getElementById("blockers-list");
+      if (!blockers.length) {
+        list.innerHTML = `<li class="muted">None</li>`;
+        return;
+      }
+      list.innerHTML = blockers.map(b => `<li>${b}</li>`).join("");
+    }
+
+    function renderMeta(dateStr) {
+      document.getElementById("updated-at").textContent = new Date(dateStr).toLocaleString();
+    }
+
+    async function init() {
+      try {
+        const state = await fetchState();
+        renderBudget(state.budget);
+        renderGoals(state.goals);
+        renderInitiatives(state.initiatives);
+        renderExperiments(state.experiments);
+        renderBlockers(state.blockers);
+        renderMeta(state.updated_at);
+      } catch (err) {
+        console.error(err);
+        document.body.innerHTML += `<p style="color:#ff6b6b">Failed to load state: ${err.message}</p>`;
+      }
+    }
+
+    init();
+    setInterval(init, 60000);
+  </script>
+</body>
+</html>
