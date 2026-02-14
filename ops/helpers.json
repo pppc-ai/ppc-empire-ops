@@ -1,0 +1,12 @@
+{
+  "updated_at": "2026-02-14T08:38:40Z",
+  "helpers": [
+    {
+      "name": "Helper-A (Telemetry)",
+      "purpose": "Auto-sync ops/state + ledger; push Discord updates",
+      "status": "spinning-up",
+      "last_update": "2026-02-14T08:38:40Z",
+      "notes": "Wiring dashboard ↔ Discord stream"
+    }
+  ]
+}

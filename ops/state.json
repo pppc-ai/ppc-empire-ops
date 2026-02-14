@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-02-14T08:26:30Z",
+  "updated_at": "2026-02-14T08:38:40Z",
   "budget": {
     "daily_cap_usd": 5,
     "spent_today_usd": 0,
@@ -13,7 +13,7 @@
   "initiatives": [
     {
       "name": "Observability Stack",
-      "description": "Dashboard live; add telemetry + automation",
+      "description": "Dashboard + Discord wiring",
       "eta": "2026-02-14",
       "status": "in-progress"
     },
@@ -24,10 +24,10 @@
       "status": "in-progress"
     },
     {
-      "name": "Automation Helper",
-      "description": "Script agent to sync ledger + state",
+      "name": "Helper-A (Telemetry)",
+      "description": "Auto-sync state + Discord notifier",
       "eta": "2026-02-14",
-      "status": "in-progress"
+      "status": "spinning-up"
     }
   ],
   "blockers": [],
@@ -37,6 +37,13 @@
       "status": "design",
       "eta": "2026-02-14",
       "notes": "Prompt kit + sample brief in development"
+    }
+  ],
+  "helpers": [
+    {
+      "name": "Helper-A (Telemetry)",
+      "status": "spinning-up",
+      "last_update": "2026-02-14T08:38:40Z"
     }
   ]
 }
