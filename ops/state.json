@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-02-14T08:38:40Z",
+  "updated_at": "2026-02-14T08:42:58Z",
   "budget": {
     "daily_cap_usd": 5,
     "spent_today_usd": 0,
@@ -13,7 +13,7 @@
   "initiatives": [
     {
       "name": "Observability Stack",
-      "description": "Dashboard + Discord wiring",
+      "description": "Dashboard + Discord + #ppc-ops comms",
       "eta": "2026-02-14",
       "status": "in-progress"
     },
@@ -43,7 +43,8 @@
     {
       "name": "Helper-A (Telemetry)",
       "status": "spinning-up",
-      "last_update": "2026-02-14T08:38:40Z"
+      "last_update": "2026-02-14T08:42:58Z",
+      "notes": "Discord #ppc-ops channel online"
     }
   ]
 }
