@@ -6,14 +6,14 @@
 - Maintain full observability: security, accounting, growth metrics.
 
 ## Active Initiatives
-1. **Observability Stack** – GitHub Pages dashboard live + Discord `#ppc-ops` comms channel + notifier wiring (ETA: Feb 14, 2026)
-2. **Experiment 001** – AI Revenue Briefs prep (prompt kit, sample brief, outreach collateral) (ETA: Feb 14, 2026)
-3. **Helper-A (Telemetry)** – Automate ops/state + ledger sync, stream updates to Discord (`#general` + `#ppc-ops`) (ETA: Feb 14, 2026)
+1. **Observability Stack** – Dashboard live; manual status pushes underway while Helper-A permissions fix rolls out (ETA: Feb 14, 2026)
+2. **Helper-A (Telemetry)** – Fix file-permission conflict; relaunch auto-sync + Discord listener (ETA: Feb 14, 2026)
+3. **Experiment 001** – AI Revenue Briefs prep (prompt kit, sample brief, outreach collateral) (ETA: Feb 14, 2026)
 
 ## Upcoming
-- Helper-A heartbeat logging + dashboard helpers panel.
+- Resume helper automation and add helper heartbeat panel once permissions resolved.
 - Publish sample brief + outreach templates to repo.
 - Launch Experiment 001 (first customer) and log spend/revenue.
 
 ## Blockers
-- None.
+- Helper-A: file permission mismatch when writing ops files (fix in progress).

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-02-14T08:42:58Z",
+  "updated_at": "2026-02-14T09:12:30Z",
   "budget": {
     "daily_cap_usd": 5,
     "spent_today_usd": 0,
@@ -13,24 +13,26 @@
   "initiatives": [
     {
       "name": "Observability Stack",
-      "description": "Dashboard + Discord + #ppc-ops comms",
+      "description": "Dashboard live; manual updates while helper fix ships",
       "eta": "2026-02-14",
       "status": "in-progress"
+    },
+    {
+      "name": "Helper-A (Telemetry)",
+      "description": "Fix file-permission conflict; relaunch auto-sync",
+      "eta": "2026-02-14",
+      "status": "blocked"
     },
     {
       "name": "Experiment 001",
       "description": "Prep prompts, sample brief, outreach copy",
       "eta": "2026-02-14",
       "status": "in-progress"
-    },
-    {
-      "name": "Helper-A (Telemetry)",
-      "description": "Auto-sync state + Discord notifier",
-      "eta": "2026-02-14",
-      "status": "spinning-up"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    "Helper-A permissions conflict when writing ops files (fix in progress)"
+  ],
   "experiments": [
     {
       "name": "Experiment 001 – Revenue Briefs",
@@ -42,9 +44,9 @@
   "helpers": [
     {
       "name": "Helper-A (Telemetry)",
-      "status": "spinning-up",
-      "last_update": "2026-02-14T08:42:58Z",
-      "notes": "Discord #ppc-ops channel online"
+      "status": "blocked",
+      "last_update": "2026-02-14T09:12:30Z",
+      "notes": "File-permission fix in progress"
     }
   ]
 }
